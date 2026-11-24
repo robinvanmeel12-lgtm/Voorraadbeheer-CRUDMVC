@@ -89,6 +89,36 @@ final class ItemController
         $this->redirect('Item bijgewerkt.');
     }
 
+    public function confirmDelete(): void
+    {
+        $id = $this->itemId();
+        $item = $id === null ? null : $this->items->find($id);
+        if ($item === null) {
+            $this->showMissing();
+            return;
+        }
+
+        $this->render('delete', [
+            'title' => 'Item verwijderen',
+            'item' => $item,
+        ]);
+    }
+
+    public function delete(): void
+    {
+        if (!$this->checkToken()) {
+            return;
+        }
+
+        $id = $this->itemId();
+        if ($id === null || !$this->items->delete($id)) {
+            $this->showMissing();
+            return;
+        }
+
+        $this->redirect('Item verwijderd.');
+    }
+
     private function itemId(): ?int
     {
         $id = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT, [

@@ -73,7 +73,18 @@ h1 {
 
 .search > a { align-self: center; }
 
+.row-actions { gap: 0.4rem 0.8rem; }
 .form-inline { margin: 0; }
+
+.text-button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--danger);
+    cursor: pointer;
+    font: inherit;
+    text-decoration: underline;
+}
 
 .button {
     display: inline-block;
@@ -89,6 +100,13 @@ h1 {
 }
 
 .button:hover { background: var(--teal-dark); }
+
+.danger {
+    border-color: var(--danger);
+    background: var(--danger);
+}
+
+.danger:hover { background: #782020; }
 
 .secondary {
     border-color: #9bafb9;

@@ -41,7 +41,16 @@
                         <td><?= escape($item['smaak']) ?></td>
                         <td class="numeric">€ <?= escape(number_format((float) $item['prijs'], 2, ',', '.')) ?></td>
                         <td class="numeric"><?= escape($item['voorraad']) ?></td>
-                        <td><a href="/?actie=bewerken&amp;id=<?= escape($item['id']) ?>">Bewerken</a></td>
+                        <td>
+                            <div class="actions row-actions">
+                                <a href="/?actie=bewerken&amp;id=<?= escape($item['id']) ?>">Bewerken</a>
+                                <form class="form-inline" method="get" action="/">
+                                    <input type="hidden" name="actie" value="bevestigen">
+                                    <input type="hidden" name="id" value="<?= escape($item['id']) ?>">
+                                    <button class="text-button" type="submit">Verwijderen</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

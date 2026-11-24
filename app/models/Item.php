@@ -56,4 +56,12 @@ final class Item
         // MySQL telt een update met ongewijzigde waarden als nul wijzigingen.
         return $statement->rowCount() === 1 || $this->find($id) !== null;
     }
+
+    public function delete(int $id): bool
+    {
+        $statement = $this->db->prepare('DELETE FROM voorraad WHERE id = :id');
+        $statement->execute(['id' => $id]);
+
+        return $statement->rowCount() === 1;
+    }
 }
