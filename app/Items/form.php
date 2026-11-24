@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * @var array{
+ *     values: array<string, string|int>,
+ *     errors: array<string, string>,
+ *     target: string,
+ *     token: string,
+ *     submit: string
+ * } $data
+ */
 $values = $data['values'];
 $errors = $data['errors'];
 $fields = [

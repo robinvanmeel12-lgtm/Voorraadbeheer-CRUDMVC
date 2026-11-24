@@ -1,3 +1,13 @@
+<?php
+
+/**
+ * @var array{
+ *     notice: string,
+ *     search: string,
+ *     items: list<array{id: int, naam: string, smaak: string, prijs: string, voorraad: int}>
+ * } $data
+ */
+?>
 <div class="page-heading">
     <h1>Voorraadoverzicht</h1>
     <a class="button" href="/?actie=toevoegen">Item toevoegen</a>
