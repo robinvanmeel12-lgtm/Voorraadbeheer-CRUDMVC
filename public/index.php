@@ -6,9 +6,16 @@ require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../app/models/Item.php';
 require __DIR__ . '/../app/controllers/ItemController.php';
 
+$path = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
+if ($path !== '/' && $path !== '/index.php') {
+    http_response_code(404);
+    exit('Deze pagina bestaat niet.');
+}
+
 $routes = [
     'overzicht' => ['GET' => 'index'],
     'toevoegen' => ['GET' => 'create', 'POST' => 'store'],
+    'bewerken' => ['GET' => 'edit', 'POST' => 'update'],
 ];
 
 $action = $_GET['actie'] ?? 'overzicht';

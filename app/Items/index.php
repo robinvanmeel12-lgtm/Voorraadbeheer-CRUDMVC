@@ -31,6 +31,7 @@
                     <th scope="col">Smaak</th>
                     <th scope="col" class="numeric">Prijs</th>
                     <th scope="col" class="numeric">Voorraad</th>
+                    <th scope="col">Acties</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                         <td><?= escape($item['smaak']) ?></td>
                         <td class="numeric">€ <?= escape(number_format((float) $item['prijs'], 2, ',', '.')) ?></td>
                         <td class="numeric"><?= escape($item['voorraad']) ?></td>
+                        <td><a href="/?actie=bewerken&amp;id=<?= escape($item['id']) ?>">Bewerken</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

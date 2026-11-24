@@ -45,6 +45,78 @@ final class ItemController
         $this->redirect('Item toegevoegd.');
     }
 
+    public function edit(): void
+    {
+        $id = $this->itemId();
+        $item = $id === null ? null : $this->items->find($id);
+        if ($item === null) {
+            $this->showMissing();
+            return;
+        }
+
+        $this->showEdit($id, $item, []);
+    }
+
+    public function update(): void
+    {
+        if (!$this->checkToken()) {
+            return;
+        }
+
+        $id = $this->itemId();
+        if ($id === null) {
+            $this->showMissing();
+            return;
+        }
+
+        [$values, $errors] = $this->validate($_POST);
+        if ($errors !== []) {
+            if ($this->items->find($id) === null) {
+                $this->showMissing();
+                return;
+            }
+
+            http_response_code(422);
+            $this->showEdit($id, $values, $errors);
+            return;
+        }
+
+        if (!$this->items->update($id, $values)) {
+            $this->showMissing();
+            return;
+        }
+
+        $this->redirect('Item bijgewerkt.');
+    }
+
+    private function itemId(): ?int
+    {
+        $id = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT, [
+            'options' => ['min_range' => 1, 'max_range' => 2147483647],
+        ]);
+        return $id === false ? null : $id;
+    }
+
+    private function showMissing(): void
+    {
+        http_response_code(404);
+        $this->render('message', [
+            'title' => 'Item niet gevonden',
+            'message' => 'Dit item bestaat niet meer of het gekozen ID is ongeldig.',
+        ]);
+    }
+
+    private function showEdit(int $id, array $values, array $errors): void
+    {
+        $this->render('edit', [
+            'title' => 'Item bewerken',
+            'values' => $values,
+            'errors' => $errors,
+            'target' => '/?actie=bewerken&id=' . $id,
+            'submit' => 'Wijzigingen opslaan',
+        ]);
+    }
+
     private function showCreate(array $values, array $errors): void
     {
         $this->render('create', [
