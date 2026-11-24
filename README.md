@@ -47,3 +47,9 @@ php -S 127.0.0.1:8081 -t public
 ```
 
 Open [127.0.0.1:8081](http://127.0.0.1:8081) en controleer de melding bij een lege voorraad. Je kunt deze omgeving ook voor de overige tests gebruiken. Stop de testserver met Ctrl+C.
+
+## Inleverdocumenten
+
+- [Technisch testrapport](inlevering/Technisch-testrapport.docx) met de uitgevoerde browser- en MySQL-controles.
+- [Testrapport 1](inlevering/Testrapport-1.docx) en [Testrapport 2](inlevering/Testrapport-2.docx) voor twee verschillende testers.
+- [Code review H1 tot en met H4](inlevering/Code-review-H1-H4.docx) met MVC-criteria, regelnummers en invulvelden voor een medestudent.
